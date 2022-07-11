@@ -1,0 +1,43 @@
+class Solution{
+  public:
+  
+     vector<string>an;
+  void fun(vector<string>&temp,string &s,int idx)
+  {
+      if(idx==s.size()&&temp.size()==4)
+      {
+          string s2=temp[0]+'.'+temp[1]+'.'+temp[2]+'.'+temp[3];
+          an.push_back(s2);
+          return;
+      }
+      string str="";
+      
+      for(int i=idx;i<s.size()&&temp.size()<4;i++)
+      {
+          //if(s[i]-'0'>9)continue;
+          str+=s[i];
+          if(str[0]=='0'&&str.size()>1)break;
+          int n=stoi(str);
+          if(n>=0&&n<=255)
+          {
+              temp.push_back(str);
+              fun(temp,s,i+1);
+              temp.pop_back();
+              
+              
+          }
+          if(n<0||n>255)
+          break;
+      }
+  }
+    vector<string> genIp(string &s) {
+      vector<string>temp;
+     
+       fun(temp,s,0);
+       
+       return an;
+    }
+
+};
+
+https://practice.geeksforgeeks.org/problems/generate-ip-addresses/1/?page=1&category[]=Backtracking&sortBy=submissions#
